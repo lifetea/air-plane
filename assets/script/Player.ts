@@ -3,6 +3,8 @@ const { ccclass, property } = _decorator;
 
 @ccclass('Player')
 export class Player extends Component {
+
+    
     start() {
 
     }
@@ -10,7 +12,7 @@ export class Player extends Component {
     touchMove(event: EventTouch) {
         let pos = this.node.position
         let move = event.getDelta()
-        console.log(move, pos)
+        // console.log(move, pos)
         this.node.setPosition(v3(move.x+ pos.x, move.y + pos.y, 0))
     }
 
