@@ -5,5 +5,13 @@
       "width": 640,
       "height": 960
     }
+  },
+  "physics": {
+    "collisionGroups": [
+      {
+        "index": 1,
+        "name": "enemy"
+      }
+    ]
   }
 }

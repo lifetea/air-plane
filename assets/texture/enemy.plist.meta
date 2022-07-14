@@ -1,0 +1,188 @@
+{
+  "ver": "1.0.6",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874",
+  "files": [
+    ".json",
+    ".plist"
+  ],
+  "subMetas": {
+    "eb09c": {
+      "importer": "sprite-frame",
+      "uuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874@eb09c",
+      "displayName": "",
+      "id": "eb09c",
+      "name": "enemy1",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 103,
+        "width": 51,
+        "height": 39,
+        "rawWidth": 51,
+        "rawHeight": 39,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a179ba8c-6a9b-423d-8a04-3ba01891bebe@6c48a",
+        "atlasUuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "acefd": {
+      "importer": "sprite-frame",
+      "uuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874@acefd",
+      "displayName": "",
+      "id": "acefd",
+      "name": "enemy1_down1",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 144,
+        "width": 51,
+        "height": 39,
+        "rawWidth": 51,
+        "rawHeight": 39,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a179ba8c-6a9b-423d-8a04-3ba01891bebe@6c48a",
+        "atlasUuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e1e7c": {
+      "importer": "sprite-frame",
+      "uuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874@e1e7c",
+      "displayName": "",
+      "id": "e1e7c",
+      "name": "enemy1_down2",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 54,
+        "width": 51,
+        "height": 47,
+        "rawWidth": 51,
+        "rawHeight": 47,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a179ba8c-6a9b-423d-8a04-3ba01891bebe@6c48a",
+        "atlasUuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "efb97": {
+      "importer": "sprite-frame",
+      "uuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874@efb97",
+      "displayName": "",
+      "id": "efb97",
+      "name": "enemy1_down3",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 1,
+        "width": 57,
+        "height": 51,
+        "rawWidth": 57,
+        "rawHeight": 51,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a179ba8c-6a9b-423d-8a04-3ba01891bebe@6c48a",
+        "atlasUuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "5c515": {
+      "importer": "sprite-frame",
+      "uuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874@5c515",
+      "displayName": "",
+      "id": "5c515",
+      "name": "enemy1_down4",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 1,
+        "trimY": 185,
+        "width": 47,
+        "height": 39,
+        "rawWidth": 47,
+        "rawHeight": 39,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "a179ba8c-6a9b-423d-8a04-3ba01891bebe@6c48a",
+        "atlasUuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "enemy.png",
+    "format": 3,
+    "uuid": "f9f68d15-2ea3-4637-a10d-b0cc7b958874",
+    "textureUuid": "a179ba8c-6a9b-423d-8a04-3ba01891bebe@6c48a"
+  }
+}

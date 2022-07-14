@@ -1,4 +1,5 @@
-import { _decorator, Component, Node, v3, UITransform } from 'cc';
+import { _decorator, Component, Node, v3, UITransform, director, Director, PhysicsSystem2D, Contact2DType, Prefab } from 'cc';
+import { Global } from './Global';
 const { ccclass, property } = _decorator;
 
 @ccclass('Main')
@@ -7,10 +8,14 @@ export class Main extends Component {
     
     bg2:Node;
 
+    @property({type: Prefab})
+    enemyPre:Prefab
+
+    global:Global = Global.getInstance()
+
     step:number = 10
 
-    move(dt:number) {
-    bg1:Node;
+    move() {
         let bg1_pos = this.bg1.position
         let bg2_pos = this.bg2.position
 
@@ -37,18 +42,10 @@ export class Main extends Component {
         } else {
             this.bg2.setPosition(v3(0, bg2_y, 0))
         }
-
-
-
- 
-        // + (dt * 0.1)
-        // let target = positon.add3f(0, y ,0)
-
-    //    console.log(dt, positon, target) 
     }
 
-    onLoad(){
-        
+    // 初始化滚动背景
+    init(){
         let children = this.node.children
         let bg1 = children[0]
         let bg2 = children[1]
@@ -56,12 +53,31 @@ export class Main extends Component {
         this.bg1 = bg1
         this.bg2 = bg2
     }
+
+    randEnemy(){
+        let x = (640 - 50) * Math.random() -300
+        let enemy = this.global.createEnemy(this.enemyPre)
+        let parent = this.node.parent
+        // console.log('生成敌机')
+        parent.addChild(enemy)
+        enemy.setPosition(x, 860)
+
+    }
+
+    onLoad(){
+        const that = this
+        this.init()
+        
+        this.schedule(function(){
+            that.randEnemy()
+        }, 0.5)
+    }
     start() {
 
     }
 
     update(deltaTime: number) {
-        this.move(deltaTime)
+        this.move()
     }
 }
 
