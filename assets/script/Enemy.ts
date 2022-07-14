@@ -26,10 +26,9 @@ export class Enemy extends Component {
     move() {
         let pos = this.node.position
         this.node.setPosition(v3(pos.x, pos.y - this.speed))
-        // if(pos.y > 600){
-        //     console.log(pos)
-        //     this.recycle()
-        // }
+        if(pos.y < -600){
+            this.die()
+        }
     }
 
 

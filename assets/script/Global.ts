@@ -28,6 +28,7 @@ export class Global{
     // 生成子弹
     public createBullet(pre:Prefab){
         let bullet = null
+        console.log(this.bulletPool.size(), this.enemyPool.size())
         if(this.bulletPool.size() > 0){
             bullet = this.bulletPool.get()
         } else {
