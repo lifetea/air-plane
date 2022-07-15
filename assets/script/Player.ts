@@ -1,7 +1,8 @@
 import { _decorator, Component, Node, input, Event, Input, EventTouch, v3, UITransform, Prefab, instantiate, director,
-     Contact2DType, Collider2D, AnimationClip, NodePool, Pool, IPhysics2DContact, Animation } from 'cc';
+     Contact2DType, Collider2D, AnimationClip, NodePool, Pool, IPhysics2DContact, Animation, AudioSource } from 'cc';
 import { Bullet } from './Bullet';
 import { Global } from './Global';
+import { Game } from './Game';
 const { ccclass, property } = _decorator;
 
 @ccclass('Player')
@@ -11,6 +12,7 @@ export class Player extends Component {
     bulletPre:Prefab
 
     global:Global = Global.getInstance()
+    isDie: boolean = false;
 
     start() {
 
@@ -57,16 +59,26 @@ export class Player extends Component {
         console.log('onBeginContact');
         //与敌机碰撞
         if(otherCollider.tag == 2){
-            this.die()
+            this.hit()
             this.global.active = false
+        }
+    }
 
+    hit(){
+        if(this.isDie == false){
+            const animationComponent = this.node.getComponent(Animation);
+            animationComponent.play('plane-die')
+            this.isDie = true
         }
     }
 
     die(){
-        console.log('自己炸了')
-        const animationComponent = this.node.getComponent(Animation);
-        animationComponent.play('plane-die')
+        const animation = this.node.getComponent(Animation);
+        animation.resume();
+        const audio = this.node.getComponent(AudioSource)
+        audio.playOneShot(audio.clip, 0.6)
+        this.node.setPosition(v3(0,-1000,0))
+        this.isDie = false
     }
 
     onDestroy(){

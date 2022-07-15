@@ -10,7 +10,6 @@ export class Game extends Component {
 
     @property({type:Node})
     resumeNode:Node
-
     
     @property({type:Label})
     scoreNode:Label  = null  // 分数节点
@@ -57,6 +56,25 @@ export class Game extends Component {
         this.wrp.active = true
     }
 
+    gameStart() {  
+        // this.global.active = true
+        // this.pauseNode.setPosition(v3(-240,480))
+        // this.resumeNode.setPosition(v3(-1000,0))
+        // this.wrp.active = true
+    }
+
+    gameOver() {
+        this.node.getChildByPath('popup/restartBtn').setPosition(v3(0,0))
+        // let player = this.node.getChildByName('player')
+        // player.setPosition(v3(0,-1000));
+
+        this.global.active = false
+        // this.pauseNode.setPosition(v3(-1000,0))
+        // this.resumeNode.setPosition(v3(-240,480))
+        // this.wrp.active = false
+        // this.scoreNode.string = 'Game Over'
+    }
+
 
     start() {
 
@@ -64,6 +82,10 @@ export class Game extends Component {
 
     update(deltaTime: number) {
         this.scoreNode.string = this.global.score.toString()
+        if(this.global.active == false){
+            console.log('结束')
+            this.gameOver()
+        }
     }
 }
 
