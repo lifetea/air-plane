@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, Collider2D, Contact2DType, IPhysics2DContact, AnimationClip, Animation, v3 } from 'cc';
+import { _decorator, Component, Node, Collider2D, Contact2DType, IPhysics2DContact, AnimationClip, Animation, v3, AudioClip, AudioSource } from 'cc';
 import { Global } from './Global';
 const { ccclass, property } = _decorator;
 
@@ -33,10 +33,14 @@ export class Enemy extends Component {
 
 
     die(){
-        const animationComponent = this.node.getComponent(Animation);
-        animationComponent.resume();
+        const animation = this.node.getComponent(Animation);
+        animation.resume();
+        const audio = this.node.getComponent(AudioSource)
+        audio.playOneShot(audio.clip, 0.6)
         this.isDie = false
         this.global.recycleEnemy(this.node)
+
+        this.global.score += 100
         // this.node.setPosition(v3(0,0,0))
         // this.node.destroy()
     }

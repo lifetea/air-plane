@@ -11,6 +11,11 @@ export class Global{
     //敌人回收池
     enemyPool:NodePool
 
+    public active:Boolean = true
+
+    public score:number = 0
+
+
     private constructor() {
         this.bulletPool = new NodePool()
         this.enemyPool = new NodePool()
@@ -25,10 +30,15 @@ export class Global{
           return Global.instance;
     }
 
+    // 恢复游戏
+    resumeGame() {
+        this.active = true
+    }
+
     // 生成子弹
     public createBullet(pre:Prefab){
         let bullet = null
-        console.log(this.bulletPool.size(), this.enemyPool.size())
+        // console.log(this.bulletPool.size(), this.enemyPool.size())
         if(this.bulletPool.size() > 0){
             bullet = this.bulletPool.get()
         } else {

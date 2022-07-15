@@ -54,23 +54,11 @@ export class Main extends Component {
         this.bg2 = bg2
     }
 
-    randEnemy(){
-        let x = (640 - 50) * Math.random() -300
-        let enemy = this.global.createEnemy(this.enemyPre)
-        let parent = this.node.parent
-        // console.log('生成敌机')
-        parent.addChild(enemy)
-        enemy.setPosition(x, 860)
-
-    }
 
     onLoad(){
         const that = this
         this.init()
         
-        this.schedule(function(){
-            that.randEnemy()
-        }, 0.5)
     }
     start() {
 
