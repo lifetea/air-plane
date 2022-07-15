@@ -10,8 +10,6 @@ export class Player extends Component {
     @property({type: Prefab})
     bulletPre:Prefab
 
-    isDie:Boolean = false
-
     global:Global = Global.getInstance()
 
     start() {
@@ -27,17 +25,18 @@ export class Player extends Component {
 
     // 发射子弹
     shoot(){
-        if(this.isDie != true){
-            // console.log('发射')
-            let bullet = this.global.createBullet(this.bulletPre)
-            
-            let pos = this.node.position
-            // console.log(pos)
-            let parent = this.node.parent
-            parent.addChild(bullet)
-            bullet.setPosition(pos.x, pos.y + 80)
-            // director.getScene().addChild(bullet)
-        }
+        if(this.global.active == false)
+            return
+        
+        // console.log('发射')
+        let bullet = this.global.createBullet(this.bulletPre)
+        
+        let pos = this.node.position
+        // console.log(pos)
+        let parent = this.node.parent
+        parent.addChild(bullet)
+        bullet.setPosition(pos.x, pos.y + 80)
+        // director.getScene().addChild(bullet)
     }
 
     onLoad(){
@@ -59,12 +58,13 @@ export class Player extends Component {
         //与敌机碰撞
         if(otherCollider.tag == 2){
             this.die()
+            this.global.active = false
+
         }
     }
 
     die(){
         console.log('自己炸了')
-        this.isDie = true
         const animationComponent = this.node.getComponent(Animation);
         animationComponent.play('plane-die')
     }
