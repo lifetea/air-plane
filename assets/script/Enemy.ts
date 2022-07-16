@@ -12,6 +12,16 @@ export class Enemy extends Component {
 
     isDie = false
 
+    @property
+    public type:number = 0
+
+    @property
+    public HP:number = 1
+
+    animation:Animation = null;
+
+    audio:AudioSource = null;
+
     global:Global = Global.getInstance()
 
     start() {
@@ -23,9 +33,17 @@ export class Enemy extends Component {
         // }
     }
 
+    onLoad() {
+        const that = this
+        this.animation = this.node.getComponent(Animation)
+        this.audio = this.node.getComponent(AudioSource)
+    }
+
     move() {
         let pos = this.node.position
-        this.node.setPosition(v3(pos.x, pos.y - this.speed))
+        if(this.global.isPuase == false){
+            this.node.setPosition(v3(pos.x, pos.y - this.speed))
+        }
         if(pos.y < -600){
             this.die()
         }
@@ -33,23 +51,54 @@ export class Enemy extends Component {
 
 
     die(){
-        const animation = this.node.getComponent(Animation);
-        animation.resume();
-        const audio = this.node.getComponent(AudioSource)
-        audio.playOneShot(audio.clip, 0.6)
+        this.animation.resume();
+        if(this.isDie){
+            this.audio.playOneShot(this.audio.clip, 0.6)
+            switch(this.type){
+                case 1:
+                    this.global.score += 100
+                    break
+                case 2:
+                    this.global.score += 1000
+                    break
+                case 3:
+                    this.global.score += 2000
+                    break
+            }
+        }
         this.isDie = false
         this.global.recycleEnemy(this.node)
 
-        this.global.score += 100
         // this.node.setPosition(v3(0,0,0))
         // this.node.destroy()
     }
 
     hit(){
         if(this.isDie == false){
-            const animationComponent = this.node.getComponent(Animation);
-            animationComponent.play('enemy-die')
-            this.isDie = true
+            this.HP -= 1
+            if(this.HP <= 0){
+                switch(this.type){
+                    case 1:
+                        this.animation.play('enemy-die')
+                        break
+                    case 2:
+                        this.animation.play('enemy2-die')
+                        break
+                    case 3:
+                        this.animation.play('enemy3-die')
+                        break
+                }
+                this.isDie = true
+            } else {
+                switch(this.type){
+                    case 2:
+                        this.animation.play('enemy2-hit')
+                        break
+                    case 3:
+                        this.animation.play('enemy3-hit')
+                        break
+                }
+            }
         }
 
     }

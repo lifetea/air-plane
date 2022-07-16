@@ -35,14 +35,15 @@ export class Bullet extends Component {
     }
 
     recycle(){
-        let player = this.node.parent.getChildByName('player')
         this.node.setPosition(v3(0,0,0))
         this.global.recycleBullet(this.node)
     }
 
     move() {
         let pos = this.node.position
-        this.node.setPosition(v3(pos.x, pos.y+ this.speed))
+        if(this.global.isPuase == false){
+            this.node.setPosition(v3(pos.x, pos.y+ this.speed))
+        }
         if(pos.y > 600){
             // console.log(pos)
             this.recycle()

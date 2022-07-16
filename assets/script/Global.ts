@@ -1,4 +1,5 @@
 import { _decorator, Component, Node, NodePool, Prefab, instantiate } from 'cc';
+import { Enemy } from './Enemy';
 const { ccclass, property } = _decorator;
 
 @ccclass('Global')
@@ -11,17 +12,28 @@ export class Global{
     //敌人回收池
     enemyPool:NodePool
 
-    public active:Boolean = true
+    //敌人2回收池
+    enemy2Pool:NodePool
+
+    //敌人2回收池
+    enemy3Pool:NodePool
+
+    public isPuase:Boolean = false
+
+    public isGameOver:Boolean = true
 
     public score:number = 0
 
+    public index:number = 1
 
     private constructor() {
         this.bulletPool = new NodePool()
         this.enemyPool = new NodePool()
+        this.enemy2Pool = new NodePool()
+        this.enemy3Pool = new NodePool()
     }
 
-    // private static instance: NodePool;
+    // 初始化实例
     public static getInstance(){
         if (!Global.instance) {
             Global.instance = new Global();
@@ -30,9 +42,8 @@ export class Global{
           return Global.instance;
     }
 
-    // 恢复游戏
-    resumeGame() {
-        this.active = true
+    addScore(score:number){
+        this.score += score
     }
 
     // 生成子弹
@@ -52,20 +63,54 @@ export class Global{
         this.bulletPool.put(node)
     }
 
+
     // 生成敌机
-    public createEnemy(pre:Prefab){
+    public createEnemy(pre:Prefab, parent:Node, x:number, type:number){
+        if(this.isPuase == true)
+            return null
         let enemy = null
-        if(this.enemyPool.size() > 0){
-            enemy = this.enemyPool.get()
+        let pool = null
+        switch(type){
+            case 1:
+                pool = this.enemyPool
+                break
+            case 2:
+                pool = this.enemy2Pool
+                break
+            case 3:
+                pool = this.enemy2Pool
+                break
+        }
+        if(pool.size() > 0){
+            enemy = pool.get()
         } else {
             enemy = instantiate(pre)
         }
-        return enemy
+        if(enemy != null){
+            // console.log('生成敌机')
+            parent.insertChild(enemy, 2)
+            enemy.setPosition(x, 860)
+            this.index += 1
+        }
     }
 
     // 回收敌击
     public recycleEnemy(node:Node){
-        this.enemyPool.put(node)
+        // console.log('回收敌机')
+        // 恢复敌机类型
+        let type =  node.getComponent(Enemy).type
+        switch(type){
+            case 1:
+                this.enemyPool.put(node)
+                break
+            case 2:
+                this.enemy2Pool.put(node)
+                break
+            case 3:
+                this.enemy3Pool.put(node)
+                break
+        }
     }
+
 }
 
