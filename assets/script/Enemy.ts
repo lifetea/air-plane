@@ -1,4 +1,5 @@
-import { _decorator, Component, Node, Collider2D, Contact2DType, IPhysics2DContact, AnimationClip, Animation, v3, AudioClip, AudioSource } from 'cc';
+import { _decorator, Component, Node, Collider2D, Contact2DType, IPhysics2DContact, AnimationClip, 
+    Animation, v3, AudioClip, AudioSource, resources } from 'cc';
 import { Global } from './Global';
 const { ccclass, property } = _decorator;
 
@@ -16,7 +17,9 @@ export class Enemy extends Component {
     public type:number = 0
 
     @property
-    public HP:number = 1
+    public MaxHP:number = 1
+
+    private hp:number = 0
 
     animation:Animation = null;
 
@@ -35,6 +38,7 @@ export class Enemy extends Component {
 
     onLoad() {
         const that = this
+        this.hp = this.MaxHP
         this.animation = this.node.getComponent(Animation)
         this.audio = this.node.getComponent(AudioSource)
     }
@@ -52,6 +56,7 @@ export class Enemy extends Component {
 
     die(){
         this.animation.resume();
+
         if(this.isDie){
             this.audio.playOneShot(this.audio.clip, 0.6)
             switch(this.type){
@@ -63,6 +68,7 @@ export class Enemy extends Component {
                     break
                 case 3:
                     this.global.score += 2000
+                    this.global.createProps(this.node.position)
                     break
             }
         }
@@ -75,8 +81,8 @@ export class Enemy extends Component {
 
     hit(){
         if(this.isDie == false){
-            this.HP -= 1
-            if(this.HP <= 0){
+            this.hp -= 1
+            if(this.hp <= 0){
                 switch(this.type){
                     case 1:
                         this.animation.play('enemy-die')

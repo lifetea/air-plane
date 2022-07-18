@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, NodePool, Prefab, instantiate } from 'cc';
+import { _decorator, Component, Node, NodePool, Prefab, instantiate, resources, director, Vec3 } from 'cc';
 import { Enemy } from './Enemy';
 const { ccclass, property } = _decorator;
 
@@ -15,8 +15,11 @@ export class Global{
     //敌人2回收池
     enemy2Pool:NodePool
 
-    //敌人2回收池
+    //敌人3回收池
     enemy3Pool:NodePool
+    
+    //道具1回收池
+    prop1Pool:NodePool
 
     public isPuase:Boolean = false
 
@@ -26,11 +29,17 @@ export class Global{
 
     public index:number = 1
 
+    private prop1Prefab:Prefab = null
+
     private constructor() {
         this.bulletPool = new NodePool()
         this.enemyPool = new NodePool()
         this.enemy2Pool = new NodePool()
         this.enemy3Pool = new NodePool()
+        this.prop1Pool = new NodePool()
+        resources.load("/prefab/ufo", Prefab, (err, prefab) => {
+            this.prop1Prefab = prefab
+        });
     }
 
     // 初始化实例
@@ -45,6 +54,28 @@ export class Global{
     addScore(score:number){
         this.score += score
     }
+    // 生成道具
+    createProps(pos:Vec3){
+        let prop = null
+        // 飞机 敌机 子弹 道具 层
+        let wrp = director.getScene().getChildByPath('Canvas/wrp')
+        // console.log(this.bulletPool.size(), this.enemyPool.size())
+        if(this.prop1Pool.size() > 0){
+            prop = this.prop1Pool.get()
+        } else {
+            prop = instantiate(this.prop1Prefab)
+        }
+    
+        wrp.addChild(prop);
+        prop.setPosition(pos)
+    }
+
+    // 回收子弹
+    public recycleProps(node:Node){
+        this.prop1Pool.put(node)
+    }
+
+
 
     // 生成子弹
     public createBullet(pre:Prefab){
@@ -78,7 +109,7 @@ export class Global{
                 pool = this.enemy2Pool
                 break
             case 3:
-                pool = this.enemy2Pool
+                pool = this.enemy3Pool
                 break
         }
         if(pool.size() > 0){
@@ -90,6 +121,7 @@ export class Global{
             // console.log('生成敌机')
             parent.insertChild(enemy, 2)
             enemy.setPosition(x, 860)
+            enemy.getComponent(Enemy).hp = enemy.getComponent(Enemy).MaxHP
             this.index += 1
         }
     }

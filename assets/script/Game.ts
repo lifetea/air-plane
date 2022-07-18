@@ -156,12 +156,18 @@ export class Game extends Component {
                 // console.log('回收敌机')
                 element.setPosition(-1000, 0)
             }
+            if(element.name == 'enemy2'){
+                element.setPosition(-1000, 0)
+            }
+            if(element.name == 'enemy3'){
+                element.setPosition(-1000, 0)
+            }
             if(element.name == 'bullet'){
                 element.setPosition(-2000, 0)
             }
-            if(element.name == 'player'){
-                element.setPosition(1000, 0)
-            }
+            // if(element.name == 'player'){
+            //     element.setPosition(1000, 0)
+            // }
         // this.enemyPool.put(node)
         })
     }

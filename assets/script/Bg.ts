@@ -1,4 +1,4 @@
-import { _decorator, Component, Node, v3, UITransform, director, Director, PhysicsSystem2D, Contact2DType, Prefab } from 'cc';
+import { _decorator, Component, Node,  v3, UITransform, director, Director, PhysicsSystem2D, Contact2DType, Prefab } from 'cc';
 import { Global } from './Global';
 const { ccclass, property } = _decorator;
 
@@ -21,14 +21,13 @@ export class Main extends Component {
 
         let bg1_size = this.bg1.getComponent(UITransform).getBoundingBox()
         let bg1_h = bg1_size.height
-        // console.log(bg1_size, bg1_pos)
         let bg1_y = bg1_pos.y - this.step
 
         let bg2_y = bg2_pos.y - this.step
 
 
         // 判断bg1 位置附加到 bg2 上面
-        if(bg1_pos.y < -(bg1_h - 15)){
+        if(bg1_pos.y < -(bg1_h)){
             // console.log('超出边界')
             this.bg1.setPosition(v3(0, bg2_y + bg1_h, 0))
         } else {
@@ -36,7 +35,7 @@ export class Main extends Component {
         }
 
         // 判断bg2 位置附加到 bg1 上面
-        if(bg2_pos.y < -(bg1_h - 15)){
+        if(bg2_pos.y < -(bg1_h)){
             // console.log('超出边界')
             this.bg2.setPosition(v3(0, bg1_y + bg1_h, 0))
         } else {

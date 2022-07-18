@@ -44,7 +44,7 @@ export class Bullet extends Component {
         if(this.global.isPuase == false){
             this.node.setPosition(v3(pos.x, pos.y+ this.speed))
         }
-        if(pos.y > 600){
+        if(pos.y > 1200){
             // console.log(pos)
             this.recycle()
         }
