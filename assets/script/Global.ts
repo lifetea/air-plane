@@ -70,12 +70,10 @@ export class Global{
         prop.setPosition(pos)
     }
 
-    // 回收子弹
+    // 回收道具
     public recycleProps(node:Node){
         this.prop1Pool.put(node)
     }
-
-
 
     // 生成子弹
     public createBullet(pre:Prefab){

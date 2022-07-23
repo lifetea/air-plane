@@ -154,16 +154,20 @@ export class Game extends Component {
         this.wrp.children.forEach(element => {
             if(element.name == 'enemy'){
                 // console.log('回收敌机')
-                element.setPosition(-1000, 0)
+                element.setPosition(-600, 0)
             }
             if(element.name == 'enemy2'){
-                element.setPosition(-1000, 0)
+                element.setPosition(-600, 0)
             }
             if(element.name == 'enemy3'){
-                element.setPosition(-1000, 0)
+                element.setPosition(-600, 0)
             }
             if(element.name == 'bullet'){
-                element.setPosition(-2000, 0)
+                element.setPosition(-1000, 0)
+            }
+            // console.log(element.name)
+            if(element.name == 'prop'){
+                element.setPosition(-400, 0)
             }
             // if(element.name == 'player'){
             //     element.setPosition(1000, 0)
