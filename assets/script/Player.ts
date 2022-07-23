@@ -122,7 +122,7 @@ export class Player extends Component {
         // 定时射击
         this.schedule(function(){
             that.shoot()
-        }, 0.15)
+        }, 0.10)
 
         //注册Touch事件
         input.on(Input.EventType.TOUCH_MOVE, this.touchMove, this);

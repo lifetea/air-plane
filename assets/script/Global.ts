@@ -37,7 +37,7 @@ export class Global{
         this.enemy2Pool = new NodePool()
         this.enemy3Pool = new NodePool()
         this.prop1Pool = new NodePool()
-        resources.load("/prefab/ufo", Prefab, (err, prefab) => {
+        resources.load("/prefab/prop", Prefab, (err, prefab) => {
             this.prop1Prefab = prefab
         });
     }

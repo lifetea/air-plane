@@ -186,7 +186,7 @@
       "name": "button_normal",
       "userData": {
         "trimType": "auto",
-        "trimThreshold": 16,
+        "trimThreshold": 1,
         "rotated": true,
         "offsetX": 0,
         "offsetY": 0,

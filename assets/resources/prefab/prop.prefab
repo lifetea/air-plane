@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "ufo",
+    "_name": "prop",
     "_objFlags": 0,
     "__editorExtras__": {},
     "_parent": null,
